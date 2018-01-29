@@ -1,0 +1,27 @@
+import numpy as np                # we import the array library
+from matplotlib import pyplot as plt   # import plotting library
+import scipy as Sci
+import scipy.linalg
+
+nn=[10,100,1000,10000,100000,1000000]
+proba=np.zeros(6)
+pi=np.zeros(6)
+for j in range (6):
+    count=np.zeros(10**(j+1))
+    x=(np.random.random(nn[j])*2-1)
+    y=(np.random.random(nn[j])*2-1)
+    for i in range (nn[j]):
+          if (x[i]**2+y[i]**2<1):
+            count[j]=(count[j]+1)
+    proba[j]=(count[j]/nn[j])
+    pi=(proba*4)
+print(pi)
+
+import matplotlib.pyplot as plt
+# log
+plt.semilogx(nn, proba)
+plt.xscale('log')
+plt.title('N contra P(N)')
+plt.xlabel('Numero de puntos')
+plt.ylabel('P(N)')
+plt.grid(True)
